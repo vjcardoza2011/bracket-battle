@@ -33,6 +33,14 @@ if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
 
+
+db.User.create({
+  username: "jpauletti",
+  password: "12345678"
+}).then(function(dbUser) {
+  console.log(dbUser);
+});
+
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
   app.listen(PORT, function() {
