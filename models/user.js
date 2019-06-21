@@ -15,5 +15,13 @@ module.exports = function (sequelize, DataTypes) {
             }
         }
     });
+
+    // associate users with brackets - if user is deleted, delete their brackets too
+    User.associate = function (models) {
+        User.hasMany(models.Bracket, {
+            onDelete: "cascade"
+        });
+    };
+
     return User;
 };

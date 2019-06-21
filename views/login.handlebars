@@ -1,0 +1,56 @@
+    <!-- navBar -->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="#"> <i class="fas fa-home"></i>
+          </a>
+        </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item">
+              Dashboard
+            </a>
+            <a class="navbar-item">
+              Create Bracket
+            </a>
+          </div>
+      
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-primary">
+                  <strong>Login / Sign up</strong>
+                </a>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+<div id="loginOrSignUp">
+    <button id="showSignInModal">Sign In</button>
+    <button id="showSignUpModal">Sign Up</button>
+  </div>
+  <div id="logoutDiv">
+    <button id="logoutButton">Logoff</button>
+  </div>
+  <!-- The Modal (contains the Sign Up form) -->
+  <div id="modalSignInForm" class="modal">
+    <form class="modal-content" id="signInForm">
+      <div class="container">
+        <h1>Sign In</h1>
+        <hr>
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" required>
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+        <label>
+          <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+        </label>
+        <div class="clearfix">
+          <button type="submit" id="signInShowButton" class="signup">Sign In</button>
+          <button type="button" id="signInCancelButton" class="cancelbtn">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>

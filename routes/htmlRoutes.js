@@ -31,12 +31,14 @@ module.exports = function(app) {
       }
     }).then(function (dbResponse) {
       console.log(dbResponse);
+      console.log(dbResponse[0].id);
       if (dbResponse.length === 0) {
         console.log("no user with those credentials");
         res.json(false);
       } else {
         console.log("user found");
-        res.json(true);
+        res.redirect("/dashboard/" + dbResponse[0].id);
+        // res.json(true);
       }
     });
   });
@@ -48,23 +50,15 @@ module.exports = function(app) {
   });
 
 
-  // create user from sign up form
-  app.post("/sign-up", function(req, res) {
-    var user = req.body.username;
-    var pass = req.body.password;
-    db.User.create({
-      username: user,
-      password: pass
+  // after user logs in, show their dashboard
+  app.get("/dashboard/:id", function(req, res) {
+    var userId = req.params.id;
+    db.Bracket.findAll({
+      where: {
+        UserId: userId
+      }
     }).then(function(dbResponse) {
-      res.json(dbResponse);
-    });
-  });
-
-
-  // temporary api to view all users
-  app.get("/api/users", function(req, res) {
-    db.User.findAll({}).then(function (dbResponse) {
-      res.json(dbResponse);
+      res.render("dashboard");
     });
   });
 
