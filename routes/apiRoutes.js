@@ -10,6 +10,13 @@ module.exports = function(app) {
     });
   });
 
+  // auto login for dev purposes
+  app.get("/auto-login", function (req, res) {
+    req.session.loggedin = true;
+    req.session.userId = 1;
+    res.send();
+  });
+
   // create user from sign up form
   app.post("/api/users", function (req, res) {
     var user = req.body.username;
@@ -19,11 +26,47 @@ module.exports = function(app) {
       password: pass
     }).then(function (dbResponse) {
       // console.log(dbResponse.id);
-      // redirect to user's dashboard after signing up
+      // user is now logged in, so save their data and loggedin state
+      req.session.loggedin = true;
+      req.session.userId = 1234567;
+      // redirect to user's dashboard
       res.redirect("/dashboard/" + dbResponse.id);
     });
   });
 
+  // check user's login attempt from login form
+  app.post("/login", function (req, res) {
+    var user = req.body.username;
+    var pass = req.body.password;
+    db.User.findAll({
+      where: {
+        username: user,
+        password: pass
+      }
+    }).then(function (dbResponse) {
+      console.log(dbResponse);
+      console.log(dbResponse[0].id);
+      if (dbResponse.length === 0) {
+        console.log("no user with those credentials");
+        res.json(false);
+      } else {
+        console.log("user found");
+        // set the session loggedin state and userId
+        req.session.loggedin = true;
+        req.session.userId = dbResponse[0].id;
+        console.log(req.session.loggedin);
+        console.log(req.session.userId);
+        res.redirect("/dashboard/" + dbResponse[0].id);
+        // res.json(true);
+      }
+    });
+  });
+
+  // logout
+  app.post("/logout", function(req, res) {
+    req.session.destroy();
+    res.redirect("/");
+  });
 
   // create new bracket
   app.post("/api/brackets/:id", function(req, res) {
