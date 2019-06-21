@@ -6,6 +6,14 @@ module.exports = function (sequelize, DataTypes) {
             validate: {
                 len: [1]
             }
+        },
+        teamNames: {
+            type: DataTypes.JSON,
+            allowNull: false
+        },
+        results: {
+            type: DataTypes.JSON,
+            allowNull: false
         }
     });
 

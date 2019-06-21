@@ -29,9 +29,11 @@ module.exports = function(app) {
   app.post("/api/brackets/:id", function(req, res) {
     var userId = req.params.id;
     var bracketName = req.body.name;
+    var teamNames = req.body.teamNames;
 
     db.Bracket.create({
       bracket_name: bracketName,
+      teamNames: teamNames,
       UserId: userId
     }).then(function(dbResponse) {
       // display that bracket page
