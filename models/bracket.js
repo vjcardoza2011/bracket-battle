@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    var Bracket = sequelize.define("User", {
+    var Bracket = sequelize.define("Bracket", {
         bracket_name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -8,5 +8,15 @@ module.exports = function (sequelize, DataTypes) {
             }
         }
     });
+
+    // brackets belong to a user; can't be created without a user - needs foreign key
+    Bracket.associate = function (models) {
+        Bracket.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
+
     return Bracket;
 };
