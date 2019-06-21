@@ -21,7 +21,7 @@ $(function() {
   container.bracket({
     init: saveData,
     save: saveFn,
-    userData: "http://myapi"
+    userData: ""
   });
 
   var data = container.bracket("data");
