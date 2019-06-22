@@ -1,3 +1,11 @@
 .list-group-item {
   line-height: 2.5;
 }
+.jumbotron {
+  background-image: url("../../public/images/banner.JPG");
+  background-size: cover;
+  height: 100%;
+}
+body {
+  background-color: grey;
+}
