@@ -1,56 +1,45 @@
-    <!-- navBar -->
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="#"> <i class="fas fa-home"></i>
-          </a>
-        </div>
-      
-        <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item">
-              Dashboard
-            </a>
-            <a class="navbar-item">
-              Create Bracket
-            </a>
-          </div>
-      
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
-                <a class="button is-primary">
-                  <strong>Login / Sign up</strong>
-                </a>
-                
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-<div id="loginOrSignUp">
-    <button id="showSignInModal">Sign In</button>
-    <button id="showSignUpModal">Sign Up</button>
+<h1 class="text-center mt-5">Login</h1>
+
+<form class="mt-5">
+  <div style="display: none;" class="login-error">
+    <p style="font-weight: bold; color: red;">Incorrect Username or password. Try again.</p>
   </div>
-  <div id="logoutDiv">
-    <button id="logoutButton">Logoff</button>
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" id="username"
+      placeholder="Enter username">
   </div>
-  <!-- The Modal (contains the Sign Up form) -->
-  <div id="modalSignInForm" class="modal">
-    <form class="modal-content" id="signInForm">
-      <div class="container">
-        <h1>Sign In</h1>
-        <hr>
-        <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" required>
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-        <label>
-          <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-        </label>
-        <div class="clearfix">
-          <button type="submit" id="signInShowButton" class="signup">Sign In</button>
-          <button type="button" id="signInCancelButton" class="cancelbtn">Cancel</button>
-        </div>
-      </div>
-    </form>
+  <div class="form-group">
+    <label for="pass">Password</label>
+    <input type="password" class="form-control" id="pass" placeholder="Password">
   </div>
+  
+  <button type="submit" id="login" class="btn btn-primary">Submit</button>
+</form>
+
+<div class="row mt-4 justify-content-center">
+  <div class="co-md-12">
+    Don't have an account yet? <a href="/signup">Sign Up</a> here.
+  </div>
+</div>
+
+<script>
+  $("#login").on("click", function (event) {
+    event.preventDefault();
+    var user = $("#username").val().trim();
+    var pass = $("#pass").val().trim();
+
+    $.ajax({
+      method: "POST",
+      url: "/login",
+      data: { username: user, password: pass }
+    }).then(function(data) {
+      if (!data) {
+        //show error message - not a valid user
+        $(".login-error").css("display", "block");
+      } else {
+        window.location.replace("/dashboard");
+      }
+    })
+  });
+</script>

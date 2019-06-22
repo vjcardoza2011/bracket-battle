@@ -14,6 +14,7 @@ module.exports = function(app) {
   app.get("/auto-login", function (req, res) {
     req.session.loggedin = true;
     req.session.userId = 1;
+    req.session.username = "jpaul";
     res.send();
   });
 
@@ -25,12 +26,14 @@ module.exports = function(app) {
       username: user,
       password: pass
     }).then(function (dbResponse) {
-      // console.log(dbResponse.id);
+      console.log(dbResponse.id);
+      console.log(dbResponse.username);
       // user is now logged in, so save their data and loggedin state
       req.session.loggedin = true;
-      req.session.userId = 1234567;
+      req.session.userId = dbResponse.id;
+      req.session.username = dbResponse.username;
       // redirect to user's dashboard
-      res.redirect("/dashboard/" + dbResponse.id);
+      res.redirect("/dashboard");
     });
   });
 
@@ -44,8 +47,8 @@ module.exports = function(app) {
         password: pass
       }
     }).then(function (dbResponse) {
-      console.log(dbResponse);
-      console.log(dbResponse[0].id);
+      // console.log(dbResponse);
+      // console.log(dbResponse[0].id);
       if (dbResponse.length === 0) {
         console.log("no user with those credentials");
         res.json(false);
@@ -54,16 +57,17 @@ module.exports = function(app) {
         // set the session loggedin state and userId
         req.session.loggedin = true;
         req.session.userId = dbResponse[0].id;
+        req.session.username = dbResponse[0].username;
         console.log(req.session.loggedin);
         console.log(req.session.userId);
-        res.redirect("/dashboard/" + dbResponse[0].id);
+        res.redirect("/dashboard");
         // res.json(true);
       }
     });
   });
 
   // logout
-  app.post("/logout", function(req, res) {
+  app.get("/logout", function(req, res) {
     req.session.destroy();
     res.redirect("/");
   });

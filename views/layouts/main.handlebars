@@ -6,35 +6,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <title>Bracket Battle</title>
 </head>
 
 <body>
   {{!-- will hard code HTML here --}}
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-        <div class="container">
-          <a class="navbar-brand" href="#">
-            <img id="logo" src="" alt="Bracket Battle">
-          </a>
-         
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">View Brackets</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Create a Bracket</a>
-              </li>
-    
-            </ul>
-          </div>
-        </div>
-      </nav>
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img id="logo" src="" alt="Bracket Battle">
+      </a>
+      
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          {{#if loggedin}}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Dashboard</a>
+          </li>
+          {{/if}}
+          <li class="nav-item">
+            <a class="nav-link" href="/create">Create a Bracket</a>
+          </li>
+          {{#unless loggedin}}
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          {{/unless}}
+          {{#if loggedin}}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Hi, {{username}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+          {{/if}}
 
-  {{{body}}}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    {{{body}}}
+  </div>
 </body>
 
 </html>

@@ -12,12 +12,12 @@ module.exports = function(app) {
   });
 
   // show sign up page
-  app.get("/sign-up", function(req, res) {
+  app.get("/signup", function(req, res) {
     res.render("signup");
   });
 
   // after user logs in, show their dashboard
-  app.get("/dashboard/", function(req, res) {
+  app.get("/dashboard", function(req, res) {
     console.log(req.session.loggedin);
     console.log(req.session.userId);
 
@@ -28,9 +28,10 @@ module.exports = function(app) {
       }
     }).then(function (dbResponse) {
       res.render("dashboard", {
-        // pass in loggedin state, userid, and brackets
+        // pass in loggedin state, userid, username, and brackets
         loggedin: req.session.loggedin,
         userId: req.session.userId,
+        username: req.session.username,
         brackets: JSON.stringify(dbResponse)
       });
     });
@@ -40,6 +41,17 @@ module.exports = function(app) {
   app.get("/bracket/:id", function(req, res) {
     res.render("bracket");
   });
+
+  // create a bracket
+  app.get("/create", function(req, res) {
+    // if logged in, show them the create page
+    if (req.session.loggedin) {
+      res.render("createbrackets");
+    } else {
+      // if not logged in, prompt them to login (or sign up)
+      res.render("login");
+    }
+  })
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
