@@ -3,17 +3,22 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    if (req.session.loggedin) {
-      res.render("index", {
-        // pass in loggedin state, userid, username, and brackets
-        loggedin: req.session.loggedin,
-        userId: req.session.userId,
-        username: req.session.username,
-        brackets: JSON.stringify(dbResponse)
-      });
-    } else {
-      res.render("index");
-    }
+    db.Bracket.findAll({
+      include: [db.User]
+    }).then(function (dbResponse) {
+      if (req.session.loggedin) {
+        console.log(dbResponse);
+        res.render("index", {
+          // pass in loggedin state, userid, username, and brackets
+          loggedin: req.session.loggedin,
+          userId: req.session.userId,
+          username: req.session.username,
+          brackets: dbResponse
+        });
+      } else {
+        res.render("index", { brackets: dbResponse });
+      }
+    });
   });
 
   // show login page
@@ -42,7 +47,7 @@ module.exports = function(app) {
         loggedin: req.session.loggedin,
         userId: req.session.userId,
         username: req.session.username,
-        brackets: JSON.stringify(dbResponse)
+        brackets: dbResponse
       });
     });
   });

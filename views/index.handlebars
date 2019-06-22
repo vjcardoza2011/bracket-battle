@@ -1,23 +1,21 @@
 <!-- create cards -->
-<div class="container">
-    <div class="row">
+<div class="row">
 {{!-- first card --}}
-      <div class="col-4">
-      <ul>
-          {{#each brackets}}
-          <li>
-              <div class="card" style="width: 18rem">
-                  <div class="card-body">
-                      <h5 class="card-title">{{brackets.bracket_name}}</h5>
-                      <a href="/bracket/{{brackets.id}}" class="card-link">Link</a>
-                  </div>
-              </div>
-          </li>
-          {{/each}}
-      </ul>
-      </div>
-    </div>  
-  </div>
+    <div class="col-4">
+        <ul>
+            {{#each brackets}}
+            <li>
+                <div class="card" style="width: 18rem">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.dataValues.bracket_name}}</h5>
+                        <a href="/bracket/{{this.dataValues.id}}" class="card-link">Link</a>
+                    </div>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
 
     
 
