@@ -68,8 +68,10 @@ module.exports = function(app) {
 
   // logout
   app.get("/logout", function(req, res) {
-    req.session.destroy();
-    res.redirect("/");
+    // req.session.destroy();
+    req.session.destroy(function(err) {
+      res.redirect("/");
+    });
   });
 
   // create new bracket

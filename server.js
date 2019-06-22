@@ -9,18 +9,21 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 
 // SESSION SETUP
-if (app.get("env") === "production") {
-  app.set("trust proxy", 1); // trust first proxy
-  sess.cookie.secure = true; // serve secure cookies
-}
-
-// SESSION SETUP
-app.use(session({
+var sess = {
   secret: "the bracket battle",
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false }
-}));
+};
+
+// SESSION SETUP
+if (app.get("env") === "production") {
+  app.set("trust proxy", 1); // trust first proxy
+  sess.cookie.secure = true; // serve secure cookies
+};
+
+app.use(session(sess));
+
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
