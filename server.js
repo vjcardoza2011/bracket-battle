@@ -1,11 +1,26 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
+var session = require("express-session");
 
 var db = require("./models");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
+
+// SESSION SETUP
+if (app.get("env") === "production") {
+  app.set("trust proxy", 1); // trust first proxy
+  sess.cookie.secure = true; // serve secure cookies
+}
+
+// SESSION SETUP
+app.use(session({
+  secret: "the bracket battle",
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -43,13 +58,16 @@ db.sequelize.sync(syncOptions).then(function() {
       PORT
     );
   });
+
+  // for testing
   db.User.create({
     username: "jpaul",
     password: "1234"
   }).then(function (db) {
-    console.log(db);
+    // console.log(db);
   });
 
+  // for testing
   db.Bracket.create({
     bracket_name: "test",
     teamNames: [
@@ -65,7 +83,7 @@ db.sequelize.sync(syncOptions).then(function() {
     ],
     UserId: 1
   }).then(function (db) {
-    console.log(db);
+    // console.log(db);
   });
 });
 
