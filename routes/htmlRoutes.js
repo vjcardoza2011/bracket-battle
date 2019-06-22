@@ -3,7 +3,17 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    res.render("index");
+    if (req.session.loggedin) {
+      res.render("index", {
+        // pass in loggedin state, userid, username, and brackets
+        loggedin: req.session.loggedin,
+        userId: req.session.userId,
+        username: req.session.username,
+        brackets: JSON.stringify(dbResponse)
+      });
+    } else {
+      res.render("index");
+    }
   });
 
   // show login page
@@ -39,22 +49,55 @@ module.exports = function(app) {
 
   // display a bracket page
   app.get("/bracket/:id", function(req, res) {
-    res.render("bracket");
+    db.Bracket.findAll({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (dbResponse) {
+      if (req.session.loggedin) {
+        res.render("bracket", {
+          // pass in loggedin state, userid, username, and brackets
+          loggedin: req.session.loggedin,
+          userId: req.session.userId,
+          username: req.session.username,
+          brackets: JSON.stringify(dbResponse),
+          dbResponse: dbResponse
+        });
+      } else {
+        res.render("bracket");
+      }
+
+    });
   });
 
   // create a bracket
   app.get("/create", function(req, res) {
     // if logged in, show them the create page
     if (req.session.loggedin) {
-      res.render("createbrackets");
+      res.render("createbrackets", {
+        // pass in loggedin state, userid, username, and brackets
+        loggedin: req.session.loggedin,
+        userId: req.session.userId,
+        username: req.session.username
+      });
     } else {
       // if not logged in, prompt them to login (or sign up)
       res.render("login");
     }
-  })
+  });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
-    res.render("404");
+    if (req.session.loggedin) {
+      res.render("404", {
+        // pass in loggedin state, userid, username, and brackets
+        loggedin: req.session.loggedin,
+        userId: req.session.userId,
+        username: req.session.username
+      });
+    } else {
+      // if not logged in, prompt them to login (or sign up)
+      res.render("404");
+    }
   });
 };
