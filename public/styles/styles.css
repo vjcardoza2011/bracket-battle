@@ -9,8 +9,17 @@
   background-color: black;
   align-content: center;
 }
+
 body {
   background-color: grey;
+}
+
+.navbar-dark .navbar-toggler {
+  border: none;
+}
+
+.navbar-dark .navbar-toggler:focus {
+  outline: none;
 }
 
 .login-name {
