@@ -32,6 +32,9 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
           {{#if loggedin}}
+          <li class="nav-item login-name">
+            Hi, {{username}}
+          </li>
           <li class="nav-item active">
             <a class="nav-link" href="/dashboard">Dashboard</a>
           </li>
@@ -45,9 +48,6 @@
           </li>
           {{/unless}}
           {{#if loggedin}}
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Hi, {{username}}</a>
-          </li>
           <li class="nav-item active">
             <a class="nav-link" href="/logout">Logout</a>
           </li>

@@ -13,4 +13,22 @@ body {
   background-color: grey;
 }
 
+.login-name {
+  color: rgba(255,255,255,.5);
+  display: block;
+  padding: .5rem 1rem;
+}
 
+@media (min-width: 992px) {
+  .login-name {
+    padding-right: .5rem;
+    padding-left: .5rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .login-name {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
