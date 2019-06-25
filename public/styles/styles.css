@@ -11,7 +11,7 @@
 }
 
 body {
-  background-color: grey;
+  background-color: rgb(145, 143, 143);
 }
 
 .navbar-dark .navbar-toggler {
@@ -21,11 +21,19 @@ body {
 .navbar-dark .navbar-toggler:focus {
   outline: none;
 }
+ .bg-dark {
+   background-color: rgb(5, 5, 80) !important;
+ }
 
 .login-name {
   color: rgba(255,255,255,.5);
   display: block;
   padding: .5rem 1rem;
+}
+
+.mt-3 {
+  width: 50%;
+  justify-content: center;
 }
 
 @media (min-width: 992px) {
@@ -41,3 +49,4 @@ body {
     padding-right: 0;
   }
 }
+
