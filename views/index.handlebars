@@ -1,18 +1,14 @@
 <!-- create cards -->
 <div class="row">
 {{!-- first card --}}
-    <div class="col-md-4">
-        <ul>
-            {{#each brackets}}
-            <li>
-                <div class="card" style="width: 18rem">
-                    <div class="card-body">
-                        <h5 class="card-title">{{this.dataValues.bracket_name}}</h5>
-                        <a href="/bracket/{{this.dataValues.id}}" class="card-link">Link</a>
-                    </div>
-                </div>
-            </li>
-            {{/each}}
-        </ul>
+    {{#each brackets}}
+    <div class="col-md-4 mb-4">
+        <div class="card" style="width: 18rem">
+            <div class="card-body">
+                <h5 class="card-title">{{this.dataValues.bracket_name}}</h5>
+                <a href="/bracket/{{this.dataValues.id}}" class="card-link">Link</a>
+            </div>
+        </div>
     </div>
+    {{/each}}
 </div>
