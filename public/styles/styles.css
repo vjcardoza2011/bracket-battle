@@ -31,9 +31,10 @@ body {
   padding: .5rem 1rem;
 }
 
-.mt-3 {
+form {
   width: 50%;
-  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (min-width: 992px) {
