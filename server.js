@@ -75,15 +75,32 @@ db.sequelize.sync(syncOptions).then(function() {
   db.Bracket.create({
     bracket_name: "test",
     teamNames: [
-      ["Team 1", "Team 2"],
-      ["Team 3", null],
-      ["Team 4", null],
-      ["Team 5", null]
-    ],
-    results: [
-      [[1, 0], [null, null], [null, null], [null, null]],
-      [[null, null], [1, 4]],
-      [[null, null], [null, null]]
+      [
+        [ {"name" : "JULIA"}, {"name" : "Andrew Miller"} ],
+        [ {"name" : "James Coutry"}, {"name" : "Sam Merrill"}],
+        [ {"name" : "Anothy Hopkins"}, {"name" : "Everett Zettersten"} ],
+        [ {"name" : "John Scott"}, {"name" : "Teddy Koufus"}],
+        [ {"name" : "Arnold Palmer"}, {"name" : "Ryan Anderson"} ],
+        [ {"name" : "Jesse James"}, {"name" : "Scott Anderson"}],
+        [ {"name" : "Josh Groben"}, {"name" : "Sammy Zettersten"} ],
+        [ {"name" : "Jake Coutry"}, {"name" : "Spencer Zettersten"}]
+      ],
+      [
+        [ {"name" : ""}, {"name" : ""} ],
+        [ {"name" : ""}, {"name" : ""} ],
+        [ {"name" : ""}, {"name" : ""} ],
+        [ {"name" : ""}, {"name" : ""} ]
+      ],
+      [
+        [ {"name" : ""}, {"name" : ""} ],
+        [ {"name" : ""}, {"name" : ""} ]
+      ],
+      [
+        [ {"name" : ""}, {"name" : ""} ],
+      ],
+      [
+        [ {"name" : ""}],
+      ]
     ],
     UserId: 1
   }).then(function (db) {
@@ -93,15 +110,32 @@ db.sequelize.sync(syncOptions).then(function() {
   db.Bracket.create({
     bracket_name: "test1",
     teamNames: [
-      ["Team 1", "Team 2"],
-      ["Team 3", null],
-      ["Team 4", null],
-      ["Team 5", null]
-    ],
-    results: [
-      [[1, 0], [null, null], [null, null], [null, null]],
-      [[null, null], [1, 4]],
-      [[null, null], [null, null]]
+      [
+        [ {"name" : "GABI"}, {"name" : "Andrew Miller"} ],
+        [ {"name" : "James Coutry"}, {"name" : "Sam Merrill"}],
+        [ {"name" : "Anothy Hopkins"}, {"name" : "Everett Zettersten"} ],
+        [ {"name" : "John Scott"}, {"name" : "Teddy Koufus"}],
+        [ {"name" : "Arnold Palmer"}, {"name" : "Ryan Anderson"} ],
+        [ {"name" : "Jesse James"}, {"name" : "Scott Anderson"}],
+        [ {"name" : "Josh Groben"}, {"name" : "Sammy Zettersten"} ],
+        [ {"name" : "Jake Coutry"}, {"name" : "Spencer Zettersten"}]
+      ],
+      [
+        [ {"name" : ""}, {"name" : ""} ],
+        [ {"name" : ""}, {"name" : ""} ],
+        [ {"name" : ""}, {"name" : ""} ],
+        [ {"name" : ""}, {"name" : ""} ]
+      ],
+      [
+        [ {"name" : ""}, {"name" : ""} ],
+        [ {"name" : ""}, {"name" : ""} ]
+      ],
+      [
+        [ {"name" : ""}, {"name" : ""} ],
+      ],
+      [
+        [ {"name" : ""}],
+      ]
     ],
     UserId: 1
   }).then(function (db) {
@@ -111,15 +145,32 @@ db.sequelize.sync(syncOptions).then(function() {
   db.Bracket.create({
     bracket_name: "test2",
     teamNames: [
-      ["Team 1", "Team 2"],
-      ["Team 3", null],
-      ["Team 4", null],
-      ["Team 5", null]
-    ],
-    results: [
-      [[1, 0], [null, null], [null, null], [null, null]],
-      [[null, null], [1, 4]],
-      [[null, null], [null, null]]
+      [
+        [ {"name" : "OTHER"}, {"name" : "Andrew Miller"} ],
+        [ {"name" : "James Coutry"}, {"name" : "Sam Merrill"}],
+        [ {"name" : "Anothy Hopkins"}, {"name" : "Everett Zettersten"} ],
+        [ {"name" : "John Scott"}, {"name" : "Teddy Koufus"}],
+        [ {"name" : "Arnold Palmer"}, {"name" : "Ryan Anderson"} ],
+        [ {"name" : "Jesse James"}, {"name" : "Scott Anderson"}],
+        [ {"name" : "Josh Groben"}, {"name" : "Sammy Zettersten"} ],
+        [ {"name" : "Jake Coutry"}, {"name" : "Spencer Zettersten"}]
+      ],
+      [
+        [ {"name" : ""}, {"name" : ""} ],
+        [ {"name" : ""}, {"name" : ""} ],
+        [ {"name" : ""}, {"name" : ""} ],
+        [ {"name" : ""}, {"name" : ""} ]
+      ],
+      [
+        [ {"name" : ""}, {"name" : ""} ],
+        [ {"name" : ""}, {"name" : ""} ]
+      ],
+      [
+        [ {"name" : ""}, {"name" : ""} ],
+      ],
+      [
+        [ {"name" : ""}],
+      ]
     ],
     UserId: 1
   }).then(function (db) {
@@ -129,15 +180,32 @@ db.sequelize.sync(syncOptions).then(function() {
   db.Bracket.create({
     bracket_name: "test2",
     teamNames: [
-      ["Team 1", "Team 2"],
-      ["Team 3", null],
-      ["Team 4", null],
-      ["Team 5", null]
-    ],
-    results: [
-      [[1, 0], [null, null], [null, null], [null, null]],
-      [[null, null], [1, 4]],
-      [[null, null], [null, null]]
+      [
+        [ {"name" : "erik"}, {"name" : "Andrew Miller"} ],
+        [ {"name" : "James Coutry"}, {"name" : "Sam Merrill"}],
+        [ {"name" : "Anothy Hopkins"}, {"name" : "Everett Zettersten"} ],
+        [ {"name" : "John Scott"}, {"name" : "Teddy Koufus"}],
+        [ {"name" : "Arnold Palmer"}, {"name" : "Ryan Anderson"} ],
+        [ {"name" : "Jesse James"}, {"name" : "Scott Anderson"}],
+        [ {"name" : "Josh Groben"}, {"name" : "Sammy Zettersten"} ],
+        [ {"name" : "Jake Coutry"}, {"name" : "Spencer Zettersten"}]
+      ],
+      [
+        [ {"name" : ""}, {"name" : ""} ],
+        [ {"name" : ""}, {"name" : ""} ],
+        [ {"name" : ""}, {"name" : ""} ],
+        [ {"name" : ""}, {"name" : ""} ]
+      ],
+      [
+        [ {"name" : ""}, {"name" : ""} ],
+        [ {"name" : ""}, {"name" : ""} ]
+      ],
+      [
+        [ {"name" : ""}, {"name" : ""} ],
+      ],
+      [
+        [ {"name" : ""}],
+      ]
     ],
     UserId: 1
   }).then(function (db) {

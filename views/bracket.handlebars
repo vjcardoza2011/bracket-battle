@@ -1,61 +1,59 @@
-{{!-- <div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <div class="data"> 
-      {{brackets.dataValues.id}}
-      {{brackets.dataValues.bracket_name}} --}}
-
-        <h1>{{brackets.dataValues.bracket_name}}</h1>
+  <h1>{{bracketName}}</h1>
 	<!-- empty gracket element -->
-	<div class="my_gracket"></div>
+	<div class="my_gracket mt-3" data-bracket-id="{{id}}"></div>
 
 	<script type="text/javascript">
-		(function(win, doc, $){
+    var teamData = "";
 
-			console.warn("Make sure the min-width of the .gracket_h3 element is set to width of the largest name/player. Gracket needs to build its canvas based on the width of the largest element. We do this my giving it a min width. I'd like to change that!");
+    $.ajax({
+      method: "GET",
+      url: "/api/brackets/" + $(".my_gracket").data("bracket-id"),
+    }).then(function (data) {
 
-			// Fake Data
-			win.TestData = [
-				[
-					[ {"name" : "erik"}, {"name" : "Andrew Miller"} ],
-					[ {"name" : "James Coutry"}, {"name" : "Sam Merrill"}],
-					[ {"name" : "Anothy Hopkins"}, {"name" : "Everett Zettersten"} ],
-					[ {"name" : "John Scott"}, {"name" : "Teddy Koufus"}],
-					[ {"name" : "Arnold Palmer"}, {"name" : "Ryan Anderson"} ],
-					[ {"name" : "Jesse James"}, {"name" : "Scott Anderson"}],
-					[ {"name" : "Josh Groben"}, {"name" : "Sammy Zettersten"} ],
-					[ {"name" : "Jake Coutry"}, {"name" : "Spencer Zettersten"}]
-				],
-				[
-					[ {"name" : ""}, {"name" : ""} ],
-					[ {"name" : ""}, {"name" : ""} ],
-					[ {"name" : ""}, {"name" : ""} ],
-					[ {"name" : ""}, {"name" : ""} ]
-				],
-				[
-					[ {"name" : ""}, {"name" : ""} ],
-					[ {"name" : ""}, {"name" : ""} ]
-				],
-				[
-					[ {"name" : ""}, {"name" : ""} ],
-				],
-				[
-					[ {"name" : ""}],
-				]
-			];
+      teamData = data.teamNames[0];
 
-			// initializer
-			$(".my_gracket").gracket({ src : win.TestData });
+      (function (win, doc, $) {
 
-		})(window, document, jQuery);
+        console.warn("Make sure the min-width of the .gracket_h3 element is set to width of the largest name/player. Gracket needs to build its canvas based on the width of the largest element. We do this my giving it a min width. I'd like to change that!");
+
+        win.TestData = [
+          [
+            [{ "name": teamData[0][0].name }, { "name": teamData[0][1].name }],
+            [{ "name": teamData[1][0].name }, { "name": teamData[1][1].name }],
+            [{ "name": teamData[2][0].name }, { "name": teamData[2][1].name }],
+            [{ "name": teamData[3][0].name }, { "name": teamData[3][1].name }],
+            [{ "name": teamData[4][0].name }, { "name": teamData[4][1].name }],
+            [{ "name": teamData[5][0].name }, { "name": teamData[5][1].name }],
+            [{ "name": teamData[6][0].name }, { "name": teamData[6][1].name }],
+            [{ "name": teamData[7][0].name }, { "name": teamData[7][1].name }]
+          ],
+          [
+            [{ "name": "" }, { "name": "" }],
+            [{ "name": "" }, { "name": "" }],
+            [{ "name": "" }, { "name": "" }],
+            [{ "name": "" }, { "name": "" }]
+          ],
+          [
+            [{ "name": "" }, { "name": "" }],
+            [{ "name": "" }, { "name": "" }]
+          ],
+          [
+            [{ "name": "" }, { "name": "" }],
+          ],
+          [
+            [{ "name": "" }],
+          ]
+        ];
+
+
+
+
+        // initializer
+        $(".my_gracket").gracket({ src: win.TestData });
+
+      })(window, document, jQuery);
+        
+    })
+		
 	</script>
 	<script type="text/javascript" src="../public/js/bracket-generator.js"></script>
-<script type="text/javascript" src="jquery.gracket.min.js"></script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-{{!-- <script type="text/javascript" src="jquery-1.6.2.min.js"></script>
-<script type="text/javascript" src="jquery.bracket.min.js"></script>
-<link rel="stylesheet" type="text/css" href="jquery.bracket.min.css" />
-<script src="/js/create-bracket.js"></script> --}}
