@@ -1,35 +1,30 @@
-/* eslint-disable indent */
-/* eslint-disable prettier/prettier */
-var saveData = {
-    teams: [
-        ["Atlanta Thrashers","Tampa Bay Lightning"],
-        ["Dallas Stars", "Nashville Preditors"]
-      ],
-    results: [
-      [
-        [3, 4],
-        [4, 2]
-      ]
-    ]
-  };
-  
-  function saveFn(data, userData) {
-    
-    var json = jQuery.toJSON(data);
-    $("#saveOutput").text("POST " + userData + " " + json);
-  }
-  
-  $(function() {
-    var container = $("div#save .demo");
-    container.bracket({
-      init: saveData,
-      save: saveFn,
-      userData: ""
-    });
-  
-    var data = container.bracket("data");
-    $("#dataOutput").text(jQuery.toJSON(data));
+module.exports = function(sequelize, DataTypes) {
+  var Bracket = sequelize.define("Bracket", {
+    bracket_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
+    teamNames: {
+      type: DataTypes.JSON,
+      allowNull: false
+    },
+    results: {
+      type: DataTypes.JSON,
+      allowNull: false
+    }
   });
-  
-  export {function, saveFn, saveData};
-  
+
+  // brackets belong to a user; can't be created without a user - needs foreign key
+  Bracket.associate = function(models) {
+    Bracket.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
+  return Bracket;
+};
