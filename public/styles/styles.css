@@ -21,14 +21,19 @@ body {
 .navbar-dark .navbar-toggler:focus {
   outline: none;
 }
- .bg-dark {
-   background-color: rgb(4, 4, 58) !important;
- }
+
+.bg-dark {
+  background-color: rgb(4, 4, 58) !important;
+}
 
 .login-name {
   color: rgba(255,255,255,.5);
   display: block;
   padding: .5rem 1rem;
+}
+
+.display-4 {
+  font-weight: 500;
 }
 
 form {
