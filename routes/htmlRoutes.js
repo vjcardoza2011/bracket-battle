@@ -54,24 +54,23 @@ module.exports = function(app) {
 
   // display a bracket page
   app.get("/bracket/:id", function(req, res) {
-    db.Bracket.findAll({
+    db.Bracket.findOne({
       where: {
         id: req.params.id
       }
     }).then(function (dbResponse) {
       if (req.session.loggedin) {
+        console.log(dbResponse);
         res.render("bracket", {
           // pass in loggedin state, userid, username, and brackets
           loggedin: req.session.loggedin,
           userId: req.session.userId,
           username: req.session.username,
-          brackets: JSON.stringify(dbResponse),
-          dbResponse: dbResponse
+          brackets: dbResponse
         });
       } else {
-        res.render("bracket");
+        res.render("404");
       }
-
     });
   });
 

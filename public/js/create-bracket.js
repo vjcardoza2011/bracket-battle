@@ -1,5 +1,4 @@
-/* eslint-disable indent */
-/* eslint-disable prettier/prettier */
+console.log("connected");
 var saveData = {
   teams: [
       ["Atlanta Thrashers","Tampa Bay Lightning"],
@@ -31,4 +30,4 @@ $(function() {
   $("#dataOutput").text(jQuery.toJSON(data));
 });
 
-export {function, saveFn, saveData};
+// export {function, saveFn, saveData};
