@@ -11,7 +11,7 @@
 } 
 
 body {
-  background-color: rgb(145, 143, 143);
+  background-color: black;
 }
 
 .navbar-dark .navbar-toggler {
@@ -22,13 +22,26 @@ body {
   outline: none;
 }
  .bg-dark {
-   background-color: rgb(4, 4, 58) !important;
+   background-color: rgb(196, 4, 4) !important;
  }
 
 .login-name {
   color: rgba(255,255,255,.5);
   display: block;
   padding: .5rem 1rem;
+}
+
+.text-center{
+  color: white;
+}
+
+#loginText {
+color: white;
+}
+
+#usernameText, #passText {
+  color: rgb(168, 164, 164);
+
 }
 
 form {
