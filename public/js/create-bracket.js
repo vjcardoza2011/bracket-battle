@@ -1,4 +1,3 @@
-console.log("connected");
 var myData = [
   [
     [{ "name": "Erik Zettersten", "id": "erik-zettersten", "seed": 1, "displaySeed": "D1", "score": 47 }, { "name": "Andrew Miller", "id": "andrew-miller", "seed": 2 }],

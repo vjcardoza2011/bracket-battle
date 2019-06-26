@@ -58,18 +58,27 @@ module.exports = function(app) {
       where: {
         id: req.params.id
       }
-    }).then(function (dbResponse) {
+    }).then(function(dbResponse) {
+      console.log(dbResponse);
       if (req.session.loggedin) {
-        console.log(dbResponse);
         res.render("bracket", {
           // pass in loggedin state, userid, username, and brackets
           loggedin: req.session.loggedin,
           userId: req.session.userId,
           username: req.session.username,
-          brackets: dbResponse
+          // brackets: dbResponse,
+          id: dbResponse.dataValues.id,
+          bracketName: dbResponse.dataValues.bracket_name,
+          brackets: dbResponse.dataValues.teamNames[0]
         });
       } else {
-        res.render("404");
+        res.render("bracket", {
+          // pass in loggedin state, userid, username, and brackets
+          // brackets: dbResponse,
+          id: dbResponse.dataValues.id,
+          bracketName: dbResponse.dataValues.bracket_name,
+          brackets: dbResponse.dataValues.teamNames[0]
+        });
       }
     });
   });

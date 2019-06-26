@@ -18,6 +18,17 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/api/brackets/:id", function (req, res) {
+    db.Bracket.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [db.User]
+    }).then(function (dbResponse) {
+      res.json(dbResponse);
+    });
+  });
+
   // auto login for dev purposes
   app.get("/auto-login", function (req, res) {
     req.session.loggedin = true;

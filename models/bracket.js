@@ -10,11 +10,11 @@ module.exports = function(sequelize, DataTypes) {
     teamNames: {
       type: DataTypes.JSON,
       allowNull: false
-    },
-    results: {
-      type: DataTypes.JSON,
-      allowNull: false
     }
+    // results: {
+    //   type: DataTypes.JSON,
+    //   allowNull: false
+    // }
   });
 
   // brackets belong to a user; can't be created without a user - needs foreign key
