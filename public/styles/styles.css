@@ -49,6 +49,10 @@ color: white;
   color: rgb(168, 164, 164);
 }
 
+.bracket-name {
+  color: white;
+}
+
 form {
   width: 50%;
   margin-left: auto;

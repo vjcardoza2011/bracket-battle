@@ -1,4 +1,7 @@
 <h1 class="text-center">Create a Bracket</h1>
+<div class="text-center text-danger font-weight-bold mb-2 createBracket-error" style="display: none;">
+  Please make sure you have entered 16 teams.
+</div>
 
 <form>
   <div class="form-group">
@@ -24,28 +27,85 @@
 
     var name = $("#bracket-name").val().trim();
     var teams = $("#teams").val().trim();
+    console.log(teams);
     // separate teams into an array
     var teamsArray = teams.split(",");
 
-    // id of user that's logged in
-    var userId = {{userId}};
+    console.log(teamsArray.length);
 
-    // create object of new bracket
-    var newBracket = {
-      bracket_name: name,
-      teamNames: [
-        ["Team 1", "Team 2"],
-        ["Team 3", null],
-        ["Team 4", null],
-        ["Team 5", null]
-      ],
-      results: [
-        [[1, 0], [null, null], [null, null], [null, null]],
-        [[null, null], [1, 4]],
-        [[null, null], [null, null]]
-      ],
-      UserId: userId
-    };
+    // check there are 16 teams entered
+    if (teamsArray.length === 16) {
+      // trim each item in array to remove spaces
+      var teamsArray = teamsArray.map(function (team) {
+        return team.trim();
+      });
 
-  })
+      var shuffledArray = [];
+
+      // shuffle array of teams
+      while (shuffledArray.length < teamsArray.length) {
+        // get random index from array
+        var index = Math.floor(Math.random() * teamsArray.length);
+        // if not already in new array, push it
+        if (shuffledArray.indexOf(teamsArray[index]) === -1) {
+          shuffledArray.push(teamsArray[index]);
+        }
+
+      }
+      console.log("shuffledArray");
+      console.log(shuffledArray);
+
+      // create object of new bracket
+      var newBracket = {
+        name: name,
+        teamNames: JSON.stringify([
+          [
+            [{ "name": shuffledArray[0] }, { "name": shuffledArray[1] }],
+            [{ "name": shuffledArray[2] }, { "name": shuffledArray[3] }],
+            [{ "name": shuffledArray[4] }, { "name": shuffledArray[5] }],
+            [{ "name": shuffledArray[6] }, { "name": shuffledArray[7] }],
+            [{ "name": shuffledArray[8] }, { "name": shuffledArray[9] }],
+            [{ "name": shuffledArray[10] }, { "name": shuffledArray[11] }],
+            [{ "name": shuffledArray[12] }, { "name": shuffledArray[13] }],
+            [{ "name": shuffledArray[14] }, { "name": shuffledArray[15] }]
+          ],
+          [
+            [{ "name": "" }, { "name": "" }],
+            [{ "name": "" }, { "name": "" }],
+            [{ "name": "" }, { "name": "" }],
+            [{ "name": "" }, { "name": "" }]
+          ],
+          [
+            [{ "name": "" }, { "name": "" }],
+            [{ "name": "" }, { "name": "" }]
+          ],
+          [
+            [{ "name": "" }, { "name": "" }],
+          ],
+          [
+            [{ "name": "" }],
+          ]
+        ])
+      };
+
+      console.log(newBracket);
+
+      // post bracket to db
+      $.ajax({
+        method: "POST",
+        url: "/api/brackets",
+        data: newBracket
+      }).then(function (data) {
+        //window.location.replace("/dashboard");
+        console.log("bracket created");
+
+        // redirect to the new bracket's page
+        window.location.replace("/bracket/" + data);
+      })
+    } else {
+      // error you need 16 teams
+      $(".createBracket-error").css("display", "block");
+    }
+
+  });
 </script>

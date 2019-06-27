@@ -94,10 +94,10 @@ module.exports = function(app) {
   });
 
   // create new bracket
-  app.post("/api/brackets/:id", function(req, res) {
-    var userId = req.params.id;
+  app.post("/api/brackets", function(req, res) {
+    var userId = req.session.userId;
     var bracketName = req.body.name;
-    var teamNames = req.body.teamNames;
+    var teamNames = JSON.parse(req.body.teamNames);
 
     db.Bracket.create({
       bracket_name: bracketName,
@@ -105,28 +105,7 @@ module.exports = function(app) {
       UserId: userId
     }).then(function(dbResponse) {
       // display that bracket page
-      res.render("bracket");
+      res.json(dbResponse.dataValues.id);
     });
   });
-
-  // // Get all examples
-  // app.get("/api/examples", function(req, res) {
-  //   db.Example.findAll({}).then(function(dbExamples) {
-  //     res.json(dbExamples);
-  //   });
-  // });
-
-  // // Create a new example
-  // app.post("/api/examples", function(req, res) {
-  //   db.Example.create(req.body).then(function(dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
-
-  // // Delete an example by id
-  // app.delete("/api/examples/:id", function(req, res) {
-  //   db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
 };
