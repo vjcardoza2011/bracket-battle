@@ -11,7 +11,7 @@
   
   <div class="form-group">
     <label for="teams" id="teamsText">Teams</label>
-    <textarea class="form-control" id="teams" rows="3" placeholder="[Separate teams using a comma. Input 16 teams.]"></textarea>
+    <textarea class="form-control" id="teams" rows="3" placeholder="[Separate teams with a line break (press Enter). Input 16 teams.]"></textarea>
   </div>
 
   <div class="text-center">
@@ -29,7 +29,7 @@
     var teams = $("#teams").val().trim();
     console.log(teams);
     // separate teams into an array
-    var teamsArray = teams.split(",");
+    var teamsArray = teams.split("\n");
 
     console.log(teamsArray.length);
 
